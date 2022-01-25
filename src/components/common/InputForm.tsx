@@ -34,6 +34,7 @@ export default InputForm;
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
 
   input {
     margin-right: 20px;
