@@ -5,10 +5,16 @@ import { recoilPersist } from "recoil-persist";
 const { persistAtom } = recoilPersist();
 
 const UserDataListState = atom<UserDataProps[]>({
-  key: "USER/DATA_LIST",
+  key: "USER/DATA/LIST",
   effects_UNSTABLE: [persistAtom],
   default: [],
 });
 
-const User = { UserDataListState };
+const UserDataCountState = atom<number>({
+  key: "USER/DATA/COUNT",
+  effects_UNSTABLE: [persistAtom],
+  default: 0,
+});
+
+const User = { UserDataListState, UserDataCountState };
 export default User;
