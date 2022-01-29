@@ -7,7 +7,7 @@ import styled from "styled-components";
 interface RegisterProps {
   userData: UserDataProps;
   onChangeUserData: (
-    key: "address" | "addressDetail" | "alias" | "caution",
+    key: "address" | "alias" | "addressDetail" | "caution" | "x" | "y",
     value: string
   ) => void;
   onClickCreateBtn: () => void;

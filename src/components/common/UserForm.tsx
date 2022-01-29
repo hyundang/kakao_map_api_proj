@@ -12,7 +12,7 @@ interface UserFormProps extends HTMLAttributes<HTMLElement> {
   value: UserDataProps;
   onClickCreateBtn: () => void;
   onChangeValue: (
-    key: "address" | "addressDetail" | "alias" | "caution",
+    key: "address" | "addressDetail" | "alias" | "caution" | "x" | "y",
     value: string
   ) => void;
   getAddress: (
@@ -35,6 +35,8 @@ const UserForm = ({
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+    onChangeValue("x", latLng?.x || "");
+    onChangeValue("y", latLng?.y || "");
     setIsMapSearchOpen(true);
   };
 

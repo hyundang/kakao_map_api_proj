@@ -4,6 +4,8 @@ export interface UserDataProps {
   alias: string;
   addressDetail: string;
   caution: string;
+  x: string;
+  y: string;
 }
 
 export interface AddrDataProps {

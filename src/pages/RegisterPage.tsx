@@ -16,10 +16,12 @@ const RegisterPage = () => {
     alias: "",
     addressDetail: "",
     caution: "",
+    x: "",
+    y: "",
   });
 
   const handleChangeUserData = (
-    key: "address" | "addressDetail" | "alias" | "caution",
+    key: "address" | "addressDetail" | "alias" | "caution" | "x" | "y",
     value: string
   ) =>
     setUserData({
@@ -37,6 +39,8 @@ const RegisterPage = () => {
       alias: "",
       addressDetail: "",
       caution: "",
+      x: "",
+      y: "",
     });
   };
 
