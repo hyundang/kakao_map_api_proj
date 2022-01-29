@@ -3,20 +3,17 @@ import styled from "styled-components";
 import { Map } from ".";
 
 interface MapModalProps {
-  userAddr: string;
+  x: string;
+  y: string;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
-const MapModal = ({ userAddr, isOpen, setIsOpen }: MapModalProps) => {
+const MapModal = ({ x, y, isOpen, setIsOpen }: MapModalProps) => {
   return isOpen ? (
     <>
       <Background onClick={() => setIsOpen(false)} />
       <Container>
-        <Map
-          onChangeValue={() => {}}
-          userAddr={userAddr}
-          isClickPossible={false}
-        />
+        <Map isClickPossible={false} latLng={{ x, y }} />
       </Container>
     </>
   ) : (

@@ -44,7 +44,8 @@ const Home = ({
       <MapModal
         isOpen={isMapOpened}
         setIsOpen={setIsMapOpened}
-        userAddr={userData?.address || ""}
+        x={userData?.x || ""}
+        y={userData?.x || ""}
       />
     </>
   );
