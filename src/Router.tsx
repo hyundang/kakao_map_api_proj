@@ -1,13 +1,14 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import { HomePage } from "@pages/index";
+import { HomePage, RegisterPage } from "@pages/index";
 
 const Router = (): React.ReactElement => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route
           element={
             <ForbiddenComponent>
