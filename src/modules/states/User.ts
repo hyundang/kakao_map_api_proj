@@ -1,4 +1,4 @@
-import { UserDataProps } from "@interfaces/User";
+import { UserDataProps } from "@interfaces/index";
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
