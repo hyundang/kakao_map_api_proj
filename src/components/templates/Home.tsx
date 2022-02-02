@@ -1,39 +1,53 @@
-import { InputForm, List } from "@components/common";
-import { UserDataProps } from "@interfaces/User";
-import React from "react";
+import { SearchForm, List, MapModal } from "@components/common";
+import { UserDataProps } from "@interfaces/index";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 interface HomeProps {
-  onSearch: () => void;
+  onSearch: (searchValue: string) => void;
   userDataList: UserDataProps[];
   onClickCreateBtn: () => void;
-  onClickDelBtn: () => void;
-  onClickAddListBtn: () => void;
-  onClickUser: (data: UserDataProps) => void;
+  onClickDelBtn: (userId: number) => void;
 }
 const Home = ({
   onSearch,
   userDataList,
   onClickCreateBtn,
   onClickDelBtn,
-  onClickAddListBtn,
-  onClickUser,
 }: HomeProps) => {
+  const [isMapOpened, setIsMapOpened] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [userData, setUserData] = useState<UserDataProps>();
+
+  const handleClickUser = (userData: UserDataProps) => {
+    setIsMapOpened(true);
+    setUserData(userData);
+  };
+
   return (
-    <Container>
-      <StyledInputForm onSearch={onSearch} />
-      <StyledList
-        userDataList={userDataList}
-        onClickCreateBtn={onClickCreateBtn}
-        onClickDelBtn={onClickDelBtn}
-        onClickUser={onClickUser}
+    <>
+      <Container>
+        <StyledSearchForm
+          onSearch={() => onSearch(searchValue)}
+          type="search"
+          placeholder="검색어를 입력해주세요"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+        <StyledList
+          userDataList={userDataList}
+          onClickCreateBtn={onClickCreateBtn}
+          onClickDelBtn={onClickDelBtn}
+          onClickUser={handleClickUser}
+        />
+      </Container>
+      <MapModal
+        isOpen={isMapOpened}
+        setIsOpen={setIsMapOpened}
+        x={userData?.x || ""}
+        y={userData?.y || ""}
       />
-      <div className="btn_wrap">
-        <button className="add_list_btn" onClick={onClickAddListBtn}>
-          계속 찾기
-        </button>
-      </div>
-    </Container>
+    </>
   );
 };
 
@@ -41,16 +55,15 @@ export default Home;
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 100px 50px;
+  box-sizing: border-box;
+  padding: 70px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .btn_wrap {
     width: 100%;
-    max-width: 900px;
+    max-width: 1040px;
     display: flex;
     justify-content: flex-end;
     .add_list_btn {
@@ -60,7 +73,7 @@ const Container = styled.div`
   }
 `;
 
-const StyledInputForm = styled(InputForm)`
+const StyledSearchForm = styled(SearchForm)`
   width: 100%;
   margin-bottom: 50px;
 
@@ -73,6 +86,7 @@ const StyledInputForm = styled(InputForm)`
 
 const StyledList = styled(List)`
   width: 100%;
-  max-width: 900px;
+  max-width: 1040px;
+  height: 610px;
   margin-bottom: 50px;
 `;

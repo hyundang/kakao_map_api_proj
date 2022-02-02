@@ -6,8 +6,15 @@ import styled from "styled-components";
 interface MapProps extends HtmlHTMLAttributes<HTMLElement> {
   latLng?: LatLngProps;
   isClickPossible: boolean;
+  onChangeUserCoord?: (x: string, y: string, address: string) => void;
 }
-const Map = ({ id, className, latLng, isClickPossible }: MapProps) => {
+const Map = ({
+  id,
+  className,
+  latLng,
+  isClickPossible,
+  onChangeUserCoord,
+}: MapProps) => {
   const mapContainer = useRef(null);
 
   useEffect(() => {
@@ -15,6 +22,7 @@ const Map = ({ id, className, latLng, isClickPossible }: MapProps) => {
       mapContainer,
       isClickPossible,
       latLng,
+      onChangeUserCoord,
     });
   }, [latLng]);
 

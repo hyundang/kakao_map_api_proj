@@ -7,9 +7,10 @@ import styled from "styled-components";
 interface RegisterProps {
   userData: UserDataProps;
   onChangeUserData: (
-    key: "address" | "addressDetail" | "alias" | "caution",
+    key: "address" | "alias" | "addressDetail" | "caution" | "x" | "y",
     value: string
   ) => void;
+  onChangeUserCoord: (x: string, y: string, address: string) => void;
   onClickCreateBtn: () => void;
   getAddress: (
     searchValue: string,
@@ -19,6 +20,7 @@ interface RegisterProps {
 const Register = ({
   userData,
   onChangeUserData,
+  onChangeUserCoord,
   onClickCreateBtn,
   getAddress,
 }: RegisterProps) => {
@@ -32,6 +34,7 @@ const Register = ({
       <StyledUserForm
         value={userData}
         onChangeValue={onChangeUserData}
+        onChangeUserCoord={onChangeUserCoord}
         onClickCreateBtn={onClickCreateBtn}
         getAddress={getAddress}
       />

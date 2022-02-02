@@ -12,9 +12,10 @@ interface UserFormProps extends HTMLAttributes<HTMLElement> {
   value: UserDataProps;
   onClickCreateBtn: () => void;
   onChangeValue: (
-    key: "address" | "addressDetail" | "alias" | "caution",
+    key: "address" | "addressDetail" | "alias" | "caution" | "x" | "y",
     value: string
   ) => void;
+  onChangeUserCoord: (x: string, y: string, address: string) => void;
   getAddress: (
     searchValue: string,
     pageIndex: number
@@ -26,6 +27,7 @@ const UserForm = ({
   value,
   onClickCreateBtn,
   onChangeValue,
+  onChangeUserCoord,
   getAddress,
 }: UserFormProps) => {
   const [isMapSearchOpen, setIsMapSearchOpen] = useState(false);
@@ -44,7 +46,11 @@ const UserForm = ({
         <button className="addr_search_btn" onClick={handleClickSearchBtn}>
           주소 검색하기
         </button>
-        <Map latLng={latLng} isClickPossible={true} />
+        <Map
+          latLng={latLng}
+          isClickPossible={true}
+          onChangeUserCoord={onChangeUserCoord}
+        />
         <StyledInputForm
           labelText="주소별칭"
           type="text"

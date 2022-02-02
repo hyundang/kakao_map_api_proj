@@ -16,16 +16,27 @@ const RegisterPage = () => {
     alias: "",
     addressDetail: "",
     caution: "",
+    x: "",
+    y: "",
   });
 
   const handleChangeUserData = (
-    key: "address" | "addressDetail" | "alias" | "caution",
+    key: "address" | "addressDetail" | "alias" | "caution" | "x" | "y",
     value: string
   ) =>
     setUserData({
       ...userData,
       [key]: value,
     });
+
+  const handleChangeUserCoord = (x: string, y: string, address: string) => {
+    setUserData({
+      ...userData,
+      address,
+      x,
+      y,
+    });
+  };
 
   const handleCreateUser = () => {
     setUserDataList(userDataList.concat([{ ...userData, id: userCnt }]));
@@ -37,6 +48,8 @@ const RegisterPage = () => {
       alias: "",
       addressDetail: "",
       caution: "",
+      x: "",
+      y: "",
     });
   };
 
@@ -44,6 +57,7 @@ const RegisterPage = () => {
     <Register
       userData={userData}
       onChangeUserData={handleChangeUserData}
+      onChangeUserCoord={handleChangeUserCoord}
       onClickCreateBtn={handleCreateUser}
       getAddress={getApi.getAddress}
     />
