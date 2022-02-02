@@ -1,47 +1,89 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 실행방법
 
-## Available Scripts
+1. repository를 클론 받은 다음 루트 폴더에 .env 파일을 생성한다.
 
-In the project directory, you can run:
+```bash
+# .env
+REACT_APP_KAKAO_KEY=b0a94e3fc10f13db612bba0a3b06f68e
+```
 
-### `npm start`
+2. 터미널에 명령어를 입력하여 실행한다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+yarn start
+# or
+npm run start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 프로젝트 구조
 
-### `npm test`
+```bash
+📦front_web
+ ┣ 📂src
+ ┃ ┣ 📂modules
+ ┃ ┃ ┣ 📂states
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜User.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┣ 📜MapModule.tsx
+ ┃ ┃ ┗ 📜UserModule.tsx
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂common
+ ┃ ┃ ┃ ┣ 📜SearchForm.tsx
+ ┃ ┃ ┃ ┣ 📜InputForm.tsx
+ ┃ ┃ ┃ ┣ 📜MapSearchModal.tsx
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┣ 📜List.tsx
+ ┃ ┃ ┃ ┣ 📜Map.tsx
+ ┃ ┃ ┃ ┣ 📜MapModal.tsx
+ ┃ ┃ ┃ ┗ 📜UserForm.tsx
+ ┃ ┃ ┗ 📂templates
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┣ 📜Home.tsx
+ ┃ ┃ ┃ ┗ 📜Register.tsx
+ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📜HomePage.tsx
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜RegisterPage.tsx
+ ┃ ┣ 📂apis
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┣ 📂interfaces
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┣ 📂libs
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜makeAddress.ts
+ ┃ ┣ 📜reportWebVitals.ts
+ ┃ ┣ 📜index.tsx
+ ┃ ┣ 📜react-app-env.d.ts
+ ┃ ┣ 📜Router.tsx
+ ┃ ┗ 📜index.css
+ ┣ 📂public
+ ┃ ┣ 📜favicon.ico
+ ┃ ┣ 📜manifest.json
+ ┃ ┣ 📜logo192.png
+ ┃ ┣ 📜logo512.png
+ ┃ ┣ 📜robots.txt
+ ┃ ┗ 📜index.html
+ ┣ 📜.gitignore
+ ┣ 📜README.md
+ ┣ 📜tsconfig.json
+ ┣ 📜config-overrides.js
+ ┣ 📜.env
+ ┣ 📜package.json
+ ┗ 📜yarn.lock
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 상태관리
 
-### `npm run build`
+- recoil
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+hooks 형태로 사용가능하여 보다 쉽게 사용할 수 있다는 장점이 있어 사용하기로 선택하였다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+state들을 관리하는데 필요한 atom들은 state 폴더 안에서 관리하였다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- recoil-persist
 
-### `npm run eject`
+데이터를 프론트 단에서 관리하기 위해 recoil-persist 라이브러리를 추가로 사용하였다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# kakao_map_api_proj
+recoil-persist 라이브러리를 통해 recoil로 관리되는 state들을 자동으로 로컬스토리지에 저장/수정/삭제될 수 있도록 구현하였다.
