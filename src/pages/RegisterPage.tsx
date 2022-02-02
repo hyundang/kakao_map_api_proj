@@ -29,6 +29,15 @@ const RegisterPage = () => {
       [key]: value,
     });
 
+  const handleChangeUserCoord = (x: string, y: string, address: string) => {
+    setUserData({
+      ...userData,
+      address,
+      x,
+      y,
+    });
+  };
+
   const handleCreateUser = () => {
     setUserDataList(userDataList.concat([{ ...userData, id: userCnt }]));
     alert("유저를 등록하였습니다.");
@@ -48,6 +57,7 @@ const RegisterPage = () => {
     <Register
       userData={userData}
       onChangeUserData={handleChangeUserData}
+      onChangeUserCoord={handleChangeUserCoord}
       onClickCreateBtn={handleCreateUser}
       getAddress={getApi.getAddress}
     />

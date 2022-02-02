@@ -7,13 +7,24 @@ interface MapModalProps {
   y: string;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  onChangeUserCoord?: (x: string, y: string, addr: string) => void;
 }
-const MapModal = ({ x, y, isOpen, setIsOpen }: MapModalProps) => {
+const MapModal = ({
+  x,
+  y,
+  isOpen,
+  setIsOpen,
+  onChangeUserCoord,
+}: MapModalProps) => {
   return isOpen ? (
     <>
       <Background onClick={() => setIsOpen(false)} />
       <Container>
-        <Map isClickPossible={false} latLng={{ x, y }} />
+        <Map
+          isClickPossible={false}
+          latLng={{ x, y }}
+          onChangeUserCoord={onChangeUserCoord}
+        />
       </Container>
     </>
   ) : (

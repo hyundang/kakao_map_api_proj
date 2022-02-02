@@ -60,6 +60,8 @@ const List = ({
     alias: "주소별칭",
     addressDetail: "상세주소",
     caution: "유의사항",
+    x: "",
+    y: "",
   };
 
   return (

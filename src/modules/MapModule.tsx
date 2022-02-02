@@ -18,11 +18,13 @@ interface MapModuleProps {
   mapContainer: React.MutableRefObject<null>;
   isClickPossible: boolean;
   latLng?: LatLngProps;
+  onChangeUserCoord?: (x: string, y: string, address: string) => void;
 }
 const MapModule = ({
   mapContainer,
   latLng,
   isClickPossible,
+  onChangeUserCoord,
 }: MapModuleProps) => {
   // 지도 생성
   const map = new naver.maps.Map(mapContainer.current, mapOptions);
