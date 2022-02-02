@@ -11,7 +11,7 @@ const { naver } = window;
 
 const mapOptions = {
   center: new naver.maps.LatLng(37.49360097791543, 127.01342259267902),
-  zoom: 3,
+  zoom: 15,
 };
 
 interface MapModuleProps {
@@ -44,7 +44,7 @@ const MapModule = ({
   const convertCoordsToAddr = (status: any, response: any, latLng: any) => {
     // 좌표로 상세 주소 정보를 요청합니다
     if (status === naver.maps.Service.Status.ERROR) {
-      return alert("Something Wrong!");
+      return alert("주소 가져오기 실패!");
     }
 
     var items = response.v2.results,
@@ -61,28 +61,20 @@ const MapModule = ({
 
     const content = [
       '<div style="padding:10px;min-width:200px;line-height:150%;">',
-      '<h4 style="margin-top:5px;">검색 좌표</h4><br />',
+      '<h4 style="margin-top:5px;"margin-bottom:0px;>검색 좌표</h4><br />',
       htmlAddresses.join("<br />"),
       "</div>",
     ].join("\n");
 
     setMarkerAndInfowindow(latLng, content);
-    // infowindow.setContent(
-    //   [
-    //     '<div style="padding:10px;min-width:200px;line-height:150%;">',
-    //     '<h4 style="margin-top:5px;">검색 좌표</h4><br />',
-    //     htmlAddresses.join("<br />"),
-    //     "</div>",
-    //   ].join("\n")
-    // );
-
-    // infowindow.open(map, latLng);
+    onChangeUserCoord && onChangeUserCoord(latLng.x, latLng.y, address);
   };
 
   const getAndConvertCoordsToAddr = (latLng: any) => {
+    const coords = new naver.maps.LatLng(latLng.y, latLng.x);
     naver.maps.Service.reverseGeocode(
       {
-        coords: latLng,
+        coords,
         orders: [
           naver.maps.Service.OrderType.ADDR,
           naver.maps.Service.OrderType.ROAD_ADDR,
@@ -93,7 +85,7 @@ const MapModule = ({
     );
   };
 
-  const handleClickMap = (mouseEvent: any) => {
+  const handleClickMap = async (mouseEvent: any) => {
     const latLng = mouseEvent.coord;
     getAndConvertCoordsToAddr(latLng);
   };
