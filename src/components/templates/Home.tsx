@@ -45,7 +45,7 @@ const Home = ({
         isOpen={isMapOpened}
         setIsOpen={setIsMapOpened}
         x={userData?.x || ""}
-        y={userData?.x || ""}
+        y={userData?.y || ""}
       />
     </>
   );
