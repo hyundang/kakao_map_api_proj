@@ -1,14 +1,7 @@
 
 ### 실행방법
 
-1. repository를 클론 받은 다음 루트 폴더에 .env 파일을 생성한다.
-
-```bash
-# .env
-REACT_APP_KAKAO_KEY=b0a94e3fc10f13db612bba0a3b06f68e
-```
-
-2. 터미널에 명령어를 입력하여 실행한다.
+터미널에 명령어를 입력하여 실행한다.
 
 ```bash
 yarn start
